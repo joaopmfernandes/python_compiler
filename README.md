@@ -5,4 +5,5 @@ Membros do grupo:
 João Fernandes
 Lourenço Correia
 Diogo Carreira
-Diogo Piçarra
+
+Teste do Github
