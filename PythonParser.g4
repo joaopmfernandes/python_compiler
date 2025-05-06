@@ -2,16 +2,18 @@ parser grammar ExprParser;
 options { tokenVocab=ExprLexer; }
 
 program
-    : stat+ EOF
+    : stat* EOF
     ;
 
 stat
-    : ID '=' expr ';'
-    | ID '+' ID';'
-    | expr ';'
+    : expr '\n'?
     ;
 
 expr
     : ID
     | INT
+    | FLOAT
+    | COMPLEX
+    | expr ('+' | '-' | '*' | '/') expr
+    | '('expr')'
    ;
