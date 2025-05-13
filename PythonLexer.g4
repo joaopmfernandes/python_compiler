@@ -8,14 +8,23 @@ SUB : '-';
 MULT : '*';
 DIV : '/';
 
+BOOLOP : AND | OR ;
 AND : 'and' ;
 OR : 'or' ;
 NOT : 'not' ;
+
+RELATION : GREATER | LOWER | EQUAL ;
+GREATER : '>' ;
+LOWER : '<' ;
+EQUAL : '==' ;
+GREATER_EQUAL : '>='; 
+LOWER_EQUAL : '<=' ;
 
 LB : '\n';
 OB : '(';
 CB : ')';
 
+BOOL : 'True' | 'False';
 INT : [0-9]+ ;
 FLOAT : INT '.' INT ;
 REAL : INT | FLOAT ;
