@@ -13,7 +13,7 @@ AND : 'and' ;
 OR : 'or' ;
 NOT : 'not' ;
 
-RELATION : GREATER | LOWER | EQUAL ;
+RELATION : GREATER | LOWER | EQUAL | GREATER_EQUAL | LOWER_EQUAL;
 GREATER : '>' ;
 LOWER : '<' ;
 EQUAL : '==' ;
