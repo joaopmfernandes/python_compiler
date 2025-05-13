@@ -2,7 +2,7 @@ parser grammar ExprParser;
 options { tokenVocab=ExprLexer; }
 
 program
-    : stat* EOF
+    : (stat | conditional)* EOF
     ;
 
 stat
@@ -19,8 +19,9 @@ expr
     ;
 
 query
-    : BOOL
+    : expr
+    | BOOL
     | (NOT? query Boolop NOT? query)+
     | '(' query ')'
-    | expr RELATION expr
+    | query (RELATION query)+
     ;
