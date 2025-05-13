@@ -15,12 +15,12 @@ expr
     | FLOAT
     | COMPLEX
     | expr ('+' | '-' | '*' | '/') expr
-    | '('expr')
+    | '(' expr ')'
     ;
 
 query
     : BOOL
     | (NOT? query Boolop NOT? query)+
-    | '('query')'
+    | '(' query ')'
     | expr RELATION expr
     ;
