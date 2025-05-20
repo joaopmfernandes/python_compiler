@@ -1,7 +1,17 @@
 lexer grammar ExprLexer;
 
 
-ASSIGN : '=' ;
+ASSIGN
+  : '='
+  | '+='
+  | '-='
+  | '*='
+  | '/='
+  | '//='
+  | '%='
+  | '**='
+
+
 SEMI : ';' ;
 ADD : '+' ;
 SUB : '-';
@@ -20,11 +30,15 @@ EQUAL : '==' ;
 GREATER_EQUAL : '>='; 
 LOWER_EQUAL : '<=' ;
 
+
 LB : '\n';
 OB : '(';
 CB : ')';
 
-BOOL : 'True' | 'False';
+
+
+INDENT : '\t' ;
+BOOL : 'True' | 'False' ;
 INT : [0-9]+ ;
 FLOAT : INT '.' INT ;
 REAL : INT | FLOAT ;
