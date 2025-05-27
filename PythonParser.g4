@@ -6,43 +6,38 @@ program
     ;
 
 stat
-    : (expr | query) '\n'?
+    : query LB?
+    | ID ASSIGN query LB
+    | LB
     ;
 
 
 conditional
-    : if_stat
-    | if_mult_elif_else
+    : if_elif_else
     ;
 
-if_stat : 'if' OB query CB ':' LB (INDENT assign_expr)+
-
-if_else :  if_stat LB 'else:' (INDENT assign_expr)+
-
-if_elif_else : if_stat LB ('elif' OB query CB ':' LB (INDENT assign_expr)+ LB)*
 
 
+if_elif_else : IF OB? query CB? COLON LB (INDENT stat)+ (ELIF OB? query CB? COLON LB (INDENT stat)+)* (ELSE COLON LB (INDENT stat)+)?
+    ;
 
-
-assign_expr
-    : expr ASSIGN expr LB?
 
 expr
     : ID
     | INT
     | FLOAT
     | COMPLEX
-    | expr ('+' | '-' | '*' | '/') expr
-    | '(' expr ')'
+    | expr (ADD | SUB | MULT | DIV) expr
+    | OB expr CB
     ;
+
 
 query
     : expr
     | BOOL
-    | (NOT? query Boolop NOT? query)+
-    | '(' query ')'
+    | query BOOLOP query
+    | NOT query
+    | OB query CB
     | query (RELATION query)+
     ;
 
-if
-    
