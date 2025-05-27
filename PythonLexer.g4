@@ -18,6 +18,7 @@ ADD : '+' ;
 SUB : '-';
 MULT : '*';
 DIV : '/';
+COMMA : ',' ;
 
 BOOLOP : AND | OR ;
 AND : 'and' ;
@@ -40,6 +41,9 @@ IF : 'if' ;
 ELSE : 'else';
 ELIF: 'elif';
 
+
+DEF : 'def';
+
 INDENT : '\t' | '    ';
 BOOL : 'True' | 'False' ;
 INT : [0-9]+ ;
@@ -47,4 +51,3 @@ FLOAT : INT '.' INT ;
 REAL : INT | FLOAT ;
 COMPLEX : REAL ('+'|'-') REAL'j';
 ID: [a-zA-Z_][a-zA-Z_0-9]* ;
-WS: [ \t\r\f]+ -> skip ;
