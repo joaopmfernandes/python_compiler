@@ -10,8 +10,9 @@ ASSIGN
   | '//='
   | '%='
   | '**='
+  ;
 
-
+COLON : ':';
 SEMI : ';' ;
 ADD : '+' ;
 SUB : '-';
@@ -35,9 +36,11 @@ LB : '\n';
 OB : '(';
 CB : ')';
 
+IF : 'if' ;
+ELSE : 'else';
+ELIF: 'elif';
 
-
-INDENT : '\t' ;
+INDENT : '\t' | '    ';
 BOOL : 'True' | 'False' ;
 INT : [0-9]+ ;
 FLOAT : INT '.' INT ;
@@ -45,4 +48,3 @@ REAL : INT | FLOAT ;
 COMPLEX : REAL ('+'|'-') REAL'j';
 ID: [a-zA-Z_][a-zA-Z_0-9]* ;
 WS: [ \t\r\f]+ -> skip ;
-
