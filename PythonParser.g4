@@ -2,7 +2,7 @@ parser grammar ExprParser;
 options { tokenVocab=ExprLexer; }
 
 program
-    : (stat | conditional)* EOF
+    : (stat | conditional | func | func_call)* EOF
     ;
 
 stat
@@ -22,6 +22,10 @@ if_elif_else : IF OB? query CB? COLON LB (INDENT stat)+ (ELIF OB? query CB? COLO
     ;
 
 
+func : DEF ID OB ID (COMMA ID)* CB COLON (stat | LB (INDENT stat)+) ;
+
+func_call : ID OB query (COMMA query)*  CB ;
+
 expr
     : ID
     | INT
@@ -29,6 +33,7 @@ expr
     | COMPLEX
     | expr (ADD | SUB | MULT | DIV) expr
     | OB expr CB
+    | func_call
     ;
 
 
@@ -40,4 +45,3 @@ query
     | OB query CB
     | query (RELATION query)+
     ;
-
