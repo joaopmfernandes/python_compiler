@@ -2,7 +2,7 @@ parser grammar ExprParser;
 options { tokenVocab=ExprLexer; }
 
 program
-    : (stat | conditional | func | func_call)* EOF
+    : (stat | conditional | func | func_call | loop_while)* EOF
     ;
 
 stat
@@ -16,7 +16,8 @@ conditional
     : if_elif_else
     ;
 
-
+loop_while
+    : WHILE OB? query CB? COLON LB (INDENT stat)+ ;
 
 if_elif_else : IF OB? query CB? COLON LB (INDENT stat)+ (ELIF OB? query CB? COLON LB (INDENT stat)+)* (ELSE COLON LB (INDENT stat)+)?
     ;
