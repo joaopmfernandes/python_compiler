@@ -40,6 +40,7 @@ CB : ')';
 IF : 'if' ;
 ELSE : 'else';
 ELIF: 'elif';
+WHILE: 'while';
 
 
 DEF : 'def';
