@@ -1,12 +1,13 @@
-parser grammar ExprParser;
-options { tokenVocab=ExprLexer; }
+parser grammar PythonParser;
+options { tokenVocab=PythonLexer; }
 
-program
-    : (stat | conditional | func | func_call | loop_while)* EOF
+code
+    : (stat | conditional | func | func_call | loop_while | loop_for)* EOF
     ;
 
 stat
-    : query LB?
+    : RETURN query LB?
+    | query LB?
     | ID ASSIGN query LB
     | LB
     ;
@@ -16,6 +17,10 @@ conditional
     : if_elif_else
     ;
 
+loop_for
+    : FOR ID IN RANGE OB expr (COMMA expr (COMMA expr)?)? CB COLON LB (INDENT stat)+
+    ;
+
 loop_while
     : WHILE OB? query CB? COLON LB (INDENT stat)+ ;
 
@@ -23,7 +28,7 @@ if_elif_else : IF OB? query CB? COLON LB (INDENT stat)+ (ELIF OB? query CB? COLO
     ;
 
 
-func : DEF ID OB ID (COMMA ID)* CB COLON (stat | LB (INDENT stat)+) ;
+func : DEF ID OB ID (COMMA ID)* CB COLON (RETURN query | LB (INDENT stat)+)  ;
 
 func_call : ID OB query (COMMA query)*  CB ;
 
