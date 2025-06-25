@@ -24,7 +24,7 @@ loop_for
 loop_while
     : WHILE OB? query CB? COLON LB (INDENT stat)+ ;
 
-if_elif_else : IF OB? query CB? COLON LB (INDENT stat)+ (ELIF OB? query CB? COLON LB (INDENT stat)+)* (ELSE COLON LB (INDENT stat)+)?
+if_elif_else : IF OB? query CB? COLON LB* (INDENT stat)+ (ELIF OB? query CB? COLON LB (INDENT stat)+)* (ELSE COLON LB (INDENT stat)+)?
     ;
 
 
@@ -37,7 +37,7 @@ expr
     | INT
     | FLOAT
     | COMPLEX
-    | expr (ADD | SUB | MULT | DIV) expr
+    | expr (ADD | SUB | MULT | DIV |) expr
     | OB expr CB
     | func_call
     ;
