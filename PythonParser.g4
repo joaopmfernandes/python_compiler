@@ -1,7 +1,7 @@
 parser grammar PythonParser;
 options { tokenVocab=PythonLexer; }
 
-code
+program
     : (stat | conditional | func | func_call | loop_while | loop_for)* EOF
     ;
 
@@ -22,22 +22,22 @@ loop_for
     ;
 
 loop_while
-    : WHILE OB? query CB? COLON LB (INDENT stat)+ ;
+    : WHILE OB? query CB? COLON LB (INDENT? stat)+ ;
 
-if_elif_else : IF OB? query CB? COLON LB* (INDENT stat)+ (ELIF OB? query CB? COLON LB (INDENT stat)+)* (ELSE COLON LB (INDENT stat)+)?
+if_elif_else : IF OB? query CB? COLON LB+ (INDENT? stat)+ (ELIF OB? query CB? COLON LB (INDENT? stat)+)* (ELSE COLON LB (INDENT? stat)+)?
     ;
 
 
-func : DEF ID OB ID (COMMA ID)* CB COLON (RETURN query | LB (INDENT stat)+)  ;
+func : DEF ID OB ID (COMMA ID)* CB COLON (RETURN query | LB (INDENT? stat)+)  ;
 
 func_call : ID OB query (COMMA query)*  CB ;
 
 expr
     : ID
-    | INT
-    | FLOAT
+    | SUB? INT
+    | SUB? FLOAT
     | COMPLEX
-    | expr (ADD | SUB | MULT | DIV |) expr
+    | expr (ADD | SUB | MULT | DIV | POW) expr
     | OB expr CB
     | func_call
     ;
