@@ -57,7 +57,7 @@ RBRACK : ']';
 // Palavras reservadas
 INDENT : '\t' | '    ';
 BOOL : 'True' | 'False' ;
-INT : '-'?[0-9]+ ;
+INT : [0-9]+ ;
 FLOAT : INT '.' INT ;
 REAL : INT | FLOAT ;
 COMPLEX : REAL ('+'|'-') REAL'j';
