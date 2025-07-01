@@ -12,6 +12,10 @@ RETURN : 'return' ;
 AND : 'and' ;
 OR : 'or' ;
 NOT : 'not' ;
+IMPORT : 'import' ;
+FROM : 'from' ;
+AS : 'as' ;
+DOT: '.' ;
 
 ASSIGN
   : '='
